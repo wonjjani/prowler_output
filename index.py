@@ -32,8 +32,8 @@ df.columns = [
     "AWS 감사 관리자 컨트롤 타워 가드레일 준수"
 ]
 
-# "상태 코드"가 "PASS"인 행을 제거
-df = df[df["상태 코드"] != "PASS"]
+# # "상태 코드"가 "PASS"인 행을 제거
+# df = df[df["상태 코드"] != "PASS"]
 
 # '상세 상태' 번역
 translator = GoogleTranslator(source='en', target='ko')
