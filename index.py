@@ -1,10 +1,8 @@
 import pandas as pd
 import json
 from openpyxl import load_workbook
-# 셀 너비 자동 조정
 from openpyxl.utils import get_column_letter
 from deep_translator import GoogleTranslator
-import pyarrow
 
 # JSON 파일 읽기
 json_file_path = "C:/Users/eggra/Downloads/prowler_aws/prowler-output-553153918398-20240610071217.ocsf.json"
@@ -32,12 +30,10 @@ df.columns = [
     "AWS 감사 관리자 컨트롤 타워 가드레일 준수"
 ]
 
-# # "상태 코드"가 "PASS"인 행을 제거
-# df = df[df["상태 코드"] != "PASS"]
-
 # '상세 상태' 번역
 translator = GoogleTranslator(source='en', target='ko')
-df['상세 상태'] = df["상세 상태"].apply(lambda x: translator.translate(x) if pd.notnull(x) else x)
+
+df['상세 상태'] = df['상세 상태'].apply(lambda x: translator.translate(x) if pd.notnull(x) else x)
 df['위험 세부 정보'] = df["위험 세부 정보"].apply(lambda x: translator.translate(x) if pd.notnull(x) else x)
 df['설명'] = df["설명"].apply(lambda x: translator.translate(x) if pd.notnull(x) else x)
 df['조치 설명'] = df["조치 설명"].apply(lambda x: translator.translate(x) if pd.notnull(x) else x)
